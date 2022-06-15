@@ -1,36 +1,60 @@
-## Welcome to GitHub Pages
+# CICD Pipelines
 
-You can use the [editor on GitHub](https://github.com/sanselme/sandbox/edit/main/docs/index.md) to maintain and preview the content for your website in Markdown files.
+Reusable and On-Demand CI/CD workflow pipelines
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+## GitHub Actions
 
-### Markdown
+### image
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+- pull
+- scan
+- sign
+- push
 
-```markdown
-Syntax highlighted code block
+### image_build
 
-# Header 1
-## Header 2
-### Header 3
+- test
+- build
+- scan
+- sign
+- push
 
-- Bulleted
-- List
+### chart
 
-1. Numbered
-2. List
+- pull
+- test
+- sign
+- push
 
-**Bold** and _Italic_ and `Code` text
+### chart_build
 
-[Link](url) and ![Image](src)
-```
+- lint
+- test
+- build
+- sign
+- push
 
-For more details see [Basic writing and formatting syntax](https://docs.github.com/en/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax).
+### generate_manifest
 
-### Jekyll Themes
+- checkout
+- secrets
+- policies
+- manifests
+- pull-request
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/sanselme/sandbox/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+### bootsrap_cluster
+
+- prereq
+- manifests
+- bootstrap
+
+### pull_request
+
+- lint
+- test
+- notification
+
+---
 
 ### Support or Contact
 
