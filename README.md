@@ -1,5 +1,7 @@
 # Readme
 
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=labsonline_cicd&metric=alert_status&token=f119c90a6bd3a178816ded1aca34b527edaaedfe)](https://sonarcloud.io/summary/new_code?id=labsonline_cicd)
+
 <!-- TODO: add readme -->
 
 ---
