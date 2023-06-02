@@ -1,0 +1,8 @@
+# Add 'repo' label to any root file changes
+repo:
+  - "*"
+
+# Add 'tooling' label to any changes in the 'tools' directory
+tooling:
+  - tools/*
+  - tools/*/**
