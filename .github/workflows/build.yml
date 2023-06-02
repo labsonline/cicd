@@ -89,7 +89,7 @@ jobs:
       #   with:
       #     sarif_file: trivy-results.bin.sarif
       - name: Upload binaries
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         if: ${{ github.event_name != 'pull_request' && github.ref == 'refs/tags/main' }}
         with:
           name: ${{ inputs.name }}-${{ env.GOOS }}-${{ env.GOARCH }}
