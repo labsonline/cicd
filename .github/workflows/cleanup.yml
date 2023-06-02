@@ -1,0 +1,66 @@
+name: Cleanup
+
+on:
+  pull_request:
+    types:
+      - closed
+  workflow_call:
+    inputs:
+      branch:
+        description: Branch to cleanup (e.g. refs/pull/1/merge)
+        required: true
+        type: string
+  schedule:
+    - cron: 30 23 * * *
+
+jobs:
+  # Stale
+  stale:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'schedule'
+    permissions:
+      issues: write
+      pull-requests: write
+    steps:
+      - uses: actions/stale@v8
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          stale-issue-message: Stale issue message
+          stale-pr-message: Stale pull request message
+          stale-issue-label: no-issue-activity
+          stale-pr-label: no-pr-activity
+
+  # Cleanup cache
+  cleanup:
+    runs-on: ubuntu-latest
+    if: github.event_name != 'schedule'
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Cleanup cache
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh extension install actions/gh-actions-cache
+
+          REPO="${{ github.repository }}"
+
+          if [ -n "${{ github.event.inputs.branch }}" ]; then
+            BRANCH="${{ github.event.inputs.branch }}"
+          else
+            BRANCH="refs/pull/${{ github.event.pull_request.number }}/merge"
+          fi
+
+          echo "Fetching list of cache key"
+          CACHE_KEYS="$(gh actions-cache list -R ${REPO} -B ${BRANCH} | cut -f 1)"
+
+          ## Setting this to not fail the workflow while deleting cache keys.
+          set +e
+          echo "Deleting caches..."
+          for KEY in ${CACHE_KEYS}
+          do
+            gh actions-cache delete "${KEY}" -R "${REPO}" -B "${BRANCH}" --confirm
+          done
+          echo "Done"
