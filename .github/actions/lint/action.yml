@@ -1,0 +1,42 @@
+name: Linting Workflow
+
+inputs:
+  default-branch:
+    type: string
+    default: main
+  helm-lint:
+    type: boolean
+    default: false
+  helm-version:
+    type: string
+    default: v3.11.2
+  validate-all:
+    type: boolean
+    default: false
+  github-token:
+    type: string
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+
+    # Super-Linter
+    - name: Lint Code Base
+      uses: github/super-linter@v5
+      env:
+        VALIDATE_ALL_CODEBASE: ${{ inputs.validate-all }}
+        DEFAULT_BRANCH: ${{ inputs.default-branch }}
+        GITHUB_TOKEN: ${{ inputs.token }}
+
+    # FIXME: Helm Lint
+    # - name: Set up Helm
+    #   uses: azure/setup-helm@v3
+    #   with:
+    #     version: ${{ inputs.helm-version }}
+    # - name: Lint Helm Charts
+    #   run: helm lint deployment/chart

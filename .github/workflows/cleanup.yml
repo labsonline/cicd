@@ -1,20 +1,19 @@
 name: Cleanup
 
 on:
-  pull_request:
-    types:
-      - closed
   workflow_call:
     inputs:
       branch:
-        description: Branch to cleanup (e.g. refs/pull/1/merge)
-        required: true
         type: string
-  schedule:
-    - cron: 30 23 * * *
+        description: Branch to cleanup (e.g. refs/pull/1/merge)
+        default: ${{ github.ref }}
+      clean:
+        type: boolean
+        description: Whether to clean or not
+        default: false
 
 jobs:
-  # Stale
+  # Cleanup stale issues and PRs
   stale:
     runs-on: ubuntu-latest
     if: github.event_name == 'schedule'
@@ -33,7 +32,7 @@ jobs:
   # Cleanup cache
   cleanup:
     runs-on: ubuntu-latest
-    if: github.event_name != 'schedule'
+    if: inputs.clean || github.event_name == 'schedule'
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -41,17 +40,12 @@ jobs:
           fetch-depth: 0
       - name: Cleanup cache
         env:
+          BRANCH: ${{ github.event.inputs.branch }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           gh extension install actions/gh-actions-cache
 
           REPO="${{ github.repository }}"
-
-          if [ -n "${{ github.event.inputs.branch }}" ]; then
-            BRANCH="${{ github.event.inputs.branch }}"
-          else
-            BRANCH="refs/pull/${{ github.event.pull_request.number }}/merge"
-          fi
 
           echo "Fetching list of cache key"
           CACHE_KEYS="$(gh actions-cache list -R ${REPO} -B ${BRANCH} | cut -f 1)"

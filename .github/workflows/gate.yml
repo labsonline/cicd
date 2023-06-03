@@ -1,0 +1,17 @@
+name: Gate Workflow
+
+on:
+  - workflow_call
+
+jobs:
+  trivy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Trivy Scan
+        uses: labsonline/cicd/.github/actions/trivy@main
+        with:
+          github-pat: ${{ secrets.GITHUB_TOKEN }}

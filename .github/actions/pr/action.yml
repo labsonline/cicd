@@ -1,0 +1,38 @@
+name: Pull Request Workflow
+
+inputs:
+  codeql-analysis:
+    type: boolean
+    default: false
+  codeql-language:
+    type: string
+  github-token:
+    type: string
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+
+    # Labeler
+    - uses: actions/labeler@v4
+      with:
+        repo-token: ${{ inputs.github-token }}
+
+    # Dependency Review
+    - name: Dependency Review
+      uses: actions/dependency-review-action@v3
+
+    # CodeQL Analysis
+    # - name: Initialize CodeQL
+    #   uses: github/codeql-action/init@v2
+    #   with:
+    #     languages: ${{ input.codeql-language }}
+    # - name: Autobuild
+    #   uses: github/codeql-action/autobuild@v2
+    # - name: Perform CodeQL Analysis
+    #   uses: github/codeql-action/analyze@v2
