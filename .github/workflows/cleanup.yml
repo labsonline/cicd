@@ -30,7 +30,7 @@ jobs:
           stale-pr-label: no-pr-activity
 
   # Cleanup cache
-  cleanup:
+  cache:
     runs-on: ubuntu-latest
     if: inputs.clean || github.event_name == 'schedule'
     steps:
