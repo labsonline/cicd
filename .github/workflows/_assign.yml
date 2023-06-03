@@ -1,4 +1,4 @@
-name: Assignment
+name: Reviewer Assignment
 
 on:
   pull_request:

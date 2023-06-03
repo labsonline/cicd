@@ -7,7 +7,6 @@ on:
         type: string
         description: Name of the project
         required: true
-        default: project
       go:
         type: boolean
         description: Whether to build Go binaries

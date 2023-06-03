@@ -6,6 +6,9 @@ inputs:
     default: false
   codeql-language:
     type: string
+  github-token:
+    type: string
+    required: true
 
 runs:
   using: composite
@@ -18,21 +21,18 @@ runs:
     # Labeler
     - uses: actions/labeler@v4
       with:
-        repo-token: ${{ secrets.GITHUB_TOKEN }}
+        repo-token: ${{ inputs.github-token }}
 
     # Dependency Review
     - name: Dependency Review
       uses: actions/dependency-review-action@v3
 
     # CodeQL Analysis
-    - name: Initialize CodeQL
-      if: ${{ input.codeql-analysis }}
-      uses: github/codeql-action/init@v2
-      with:
-        languages: ${{ input.codeql-language }}
-    - name: Autobuild
-      if: ${{ input.codeql-analysis }}
-      uses: github/codeql-action/autobuild@v2
-    - name: Perform CodeQL Analysis
-      if: ${{ input.codeql-analysis }}
-      uses: github/codeql-action/analyze@v2
+    # - name: Initialize CodeQL
+    #   uses: github/codeql-action/init@v2
+    #   with:
+    #     languages: ${{ input.codeql-language }}
+    # - name: Autobuild
+    #   uses: github/codeql-action/autobuild@v2
+    # - name: Perform CodeQL Analysis
+    #   uses: github/codeql-action/analyze@v2

@@ -1,0 +1,17 @@
+name: Gate CI
+
+on:
+  push: {}
+  pull_request: {}
+  schedule:
+    - cron: 30 1 * * 6
+
+jobs:
+  review:
+    uses: ./.github/workflows/review.yml
+  gate:
+    uses: ./.github/workflows/gate.yml
+  scorecard:
+    uses: ./.github/workflows/scorecard.yml
+  cleanup:
+    uses: ./.github/workflows/cleanup.yml
