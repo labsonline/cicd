@@ -1,8 +1,7 @@
 name: Required Workflow
 
 on:
-  schedule:
-    - cron: 30 1 * * 6
+  - push
 
 jobs:
   review:
