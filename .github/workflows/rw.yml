@@ -1,6 +1,7 @@
 name: Required Workflow
 
-on: {}
+on:
+ - workflow_call
 
 jobs:
   review:
