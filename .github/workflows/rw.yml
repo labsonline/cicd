@@ -1,0 +1,7 @@
+name: Required Workflow
+
+on: {}
+
+jobs:
+  review:
+    uses: labsonline/cicd/.github/workflows/review.yml@main
