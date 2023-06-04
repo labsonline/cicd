@@ -1,8 +1,0 @@
-name: Required Workflow
-
-on:
-  - push
-
-jobs:
-  review:
-    uses: labsonline/cicd/.github/workflows/review.yml@main
