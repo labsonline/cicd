@@ -2,7 +2,9 @@
 repo:
   - "*"
 
-# Add 'tooling' label to any changes in the 'tools' directory
-tooling:
-  - tools/*
-  - tools/*/**
+# Add 'github-actions' label to any changes in the '.github' directory
+github-actions:
+  - .github/workflows/*
+  - .github/workflows/*/**
+  - .github/dependabot.yml
+  - .github/dependabot.yml/**
