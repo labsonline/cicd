@@ -3,6 +3,7 @@ name: Workflow Gate
 inputs:
   github-pat:
     type: string
+    description: GitHub Personal Access Token
     required: true
 
 runs:
