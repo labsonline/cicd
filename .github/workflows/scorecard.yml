@@ -10,7 +10,9 @@ on:
         type: boolean
         description: Whether to publish results to OpenSSF REST API
 
-permissions: read-all
+permissions:
+  contents: write
+  security-events: write
 
 jobs:
   analysis:

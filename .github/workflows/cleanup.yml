@@ -19,6 +19,9 @@ jobs:
   stale:
     runs-on: ubuntu-latest
     if: ${{ github.event_name == 'schedule' }}
+    permissions:
+      issues: write
+      pull-requests: write
     steps:
       - uses: actions/stale@v8
         with:
@@ -32,6 +35,8 @@ jobs:
   cache:
     runs-on: ubuntu-latest
     if: ${{ github.event.inputs.clean || github.event_name == 'schedule' }}
+    permissions:
+      contents: write
     steps:
       - name: Cleanup cache
         shell: bash
