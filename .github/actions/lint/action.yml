@@ -7,16 +7,16 @@ inputs:
     default: main
   helm-chart:
     description: Helm chart path
+    default: deployment/chart
   helm-lint:
     description: Perform helm linting
+    default: "false"
   helm-version:
     description: Helm version
     default: v3.12.3
   validate-all:
     description: Lint everything
-  github-token:
-    description: GitHub Token
-    required: true
+    default: "false"
 
 runs:
   using: composite
@@ -26,7 +26,7 @@ runs:
       uses: github/super-linter@962a6409c1b303d0e53a9d34ada577a0362f4fae # v5.2.1 https://github.com/super-linter/super-linter/commit/962a6409c1b303d0e53a9d34ada577a0362f4fae
       env:
         DEFAULT_BRANCH: ${{ github.event.inputs.default-branch }}
-        GITHUB_TOKEN: ${{ github.event.inputs.token }}
+        GITHUB_TOKEN: ${{ github.token }}
         VALIDATE_ALL_CODEBASE: ${{ github.event.inputs.validate-all }}
 
     # Helm Lint

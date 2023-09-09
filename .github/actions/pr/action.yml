@@ -4,23 +4,20 @@ description: Pull request workflows
 inputs:
   codeql-analysis:
     description: Perform CodeQL analysis
+    default: "false"
   codeql-build-script:
     description: Build script
   codeql-language:
     description: Language to analyze
   codeql-queries:
-    description: Queries to run
-  github-token:
-    description: GitHub Token
-    required: true
+    description: Queries to run (e.g. security-extended,security-and-quality)
 
 runs:
   using: composite
   steps:
     # Labeler
-    - uses: actions/labeler@v4
-      with:
-        repo-token: ${{ github.event.inputs.github-token }}
+    - name: Labeler
+      uses: actions/labeler@v4
 
     # Dependency Review
     - name: Dependency Review
@@ -32,14 +29,14 @@ runs:
       uses: github/codeql-action/init@e4262713b504983e61c7728f5452be240d9385a7 # v2.21.5 https://github.com/github/codeql-action/commit/e4262713b504983e61c7728f5452be240d9385a7
       with:
         languages: ${{ github.event.inputs.codeql-language }}
-        queries: ${{ github.event.inputs.codeql-queries }} # security-extended,security-and-quality
+        queries: ${{ github.event.inputs.codeql-queries }}
 
     - name: Autobuild
-      if: ${{ github.event.inputs.codeql-analysis && github.event.inputs.codeql-build-script == "" }}
+      if: ${{ github.event.inputs.codeql-analysis && ! github.event.inputs.codeql-build-script }}
       uses: github/codeql-action/autobuild@e4262713b504983e61c7728f5452be240d9385a7 # v2.21.5 https://github.com/github/codeql-action/commit/e4262713b504983e61c7728f5452be240d9385a7
 
     - name: Custom Build
-      if: ${{ github.event.inputs.codeql-analysis && github.event.inputs.codeql-build-script != "" }}
+      if: ${{ github.event.inputs.codeql-analysis && github.event.inputs.codeql-build-script }}
       shell: bash
       env:
         BUILD_SCRIPT: ${{ github.event.inputs.codeql-build-script }}

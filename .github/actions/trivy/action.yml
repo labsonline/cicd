@@ -4,9 +4,6 @@ description: Gate workflow based on Trivy scan results
 inputs:
   upload-scan-result:
     description: Upload scan results to GitHub Security tab
-  github-pat:
-    description: GitHub Personal Access Token
-    required: true
 
 runs:
   using: composite
@@ -32,7 +29,7 @@ runs:
       if: ${{ inputs.generate-sbom }}
       with:
         format: github
-        github-pat: ${{ github.event.inputs.github-pat }}
+        github-pat: ${{ github.token }}
         image-ref: .
         output: dependency-results.sbom.json
         scan-type: fs
