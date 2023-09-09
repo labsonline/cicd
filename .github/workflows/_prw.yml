@@ -6,9 +6,10 @@ on:
       - edited
       - opened
       - reopened
+      - synchronize
 
 permissions: read-all
 
 jobs:
   review:
-    uses: labsonline/cicd/.github/workflows/review.yml@latest
+    uses: labsonline/cicd/.github/workflows/review.yml@121b43dd9bbaec952cf0803972a532fde5d4adb0 # latest https://github.com/labsonline/cicd/commit/121b43dd9bbaec952cf0803972a532fde5d4adb0

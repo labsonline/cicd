@@ -31,8 +31,8 @@ runs:
       if: ${{ github.event.inputs.codeql-analysis }}
       uses: github/codeql-action/init@e4262713b504983e61c7728f5452be240d9385a7 # v2.21.5 https://github.com/github/codeql-action/commit/e4262713b504983e61c7728f5452be240d9385a7
       with:
-        languages: ${{ input.codeql-language }}
-        queries: ${{ inpute.codeql-queries }} # security-extended,security-and-quality
+        languages: ${{ github.event.inputs.codeql-language }}
+        queries: ${{ github.event.inputs.codeql-queries }} # security-extended,security-and-quality
 
     - name: Autobuild
       if: ${{ github.event.inputs.codeql-analysis && github.event.inputs.codeql-build-script == "" }}

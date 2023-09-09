@@ -21,7 +21,7 @@ jobs:
           persist-credentials: false
 
       - name: Trivy Scan
-        uses: labsonline/cicd/.github/actions/trivy@latest
+        uses: labsonline/cicd/.github/actions/trivy@121b43dd9bbaec952cf0803972a532fde5d4adb0 # latest https://github.com/labsonline/cicd/commit/121b43dd9bbaec952cf0803972a532fde5d4adb0
         with:
           github-pat: ${{ secrets.GITHUB_TOKEN }}
           upload-scan-result: ${{ github.ref == 'refs/heads/main' && github.event_name == 'push' }}
