@@ -22,11 +22,11 @@ jobs:
         uses: kentaro-m/auto-assign-action@3e986bf9c274729de0d85191da42484917883328 # v1.2.5 https://github.com/kentaro-m/auto-assign-action/commit/3e986bf9c274729de0d85191da42484917883328
 
       - name: Lint
-        uses: labsonline/cicd/.github/actions/lint@b510ba2b18998d47dd6b725a395b9c527922370d # v0.1.0-alpha.1 https://github.com/labsonline/cicd/commit/b510ba2b18998d47dd6b725a395b9c527922370d
+        uses: labsonline/cicd/.github/actions/lint@b5ef8c3b917ae68e4dcf365b9bc645a8a486b5c3 # v0.1.0-alpha.2 https://github.com/labsonline/cicd/commit/b5ef8c3b917ae68e4dcf365b9bc645a8a486b5c3
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Review
-        uses: labsonline/cicd/.github/actions/pr@b510ba2b18998d47dd6b725a395b9c527922370d # v0.1.0-alpha.1 https://github.com/labsonline/cicd/commit/b510ba2b18998d47dd6b725a395b9c527922370d
+        uses: labsonline/cicd/.github/actions/pr@b5ef8c3b917ae68e4dcf365b9bc645a8a486b5c3 # v0.1.0-alpha.2 https://github.com/labsonline/cicd/commit/b5ef8c3b917ae68e4dcf365b9bc645a8a486b5c3
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}

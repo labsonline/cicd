@@ -12,7 +12,7 @@ permissions: read-all
 
 jobs:
   cleanup:
-    uses: labsonline/cicd/.github/workflows/cleanup.yml@b510ba2b18998d47dd6b725a395b9c527922370d # v0.1.0-alpha.1 https://github.com/labsonline/cicd/commit/b510ba2b18998d47dd6b725a395b9c527922370d
+    uses: labsonline/cicd/.github/workflows/cleanup.yml@b5ef8c3b917ae68e4dcf365b9bc645a8a486b5c3 # v0.1.0-alpha.2 https://github.com/labsonline/cicd/commit/b5ef8c3b917ae68e4dcf365b9bc645a8a486b5c3
     permissions:
       contents: write
       issues: write
