@@ -11,7 +11,7 @@ inputs:
     description: Perform helm linting
   helm-version:
     description: Helm version
-    default: v3.11.2
+    default: v3.12.3
   validate-all:
     description: Lint everything
   github-token:
@@ -23,7 +23,7 @@ runs:
   steps:
     # Super-Linter
     - name: Lint Code Base
-      uses: github/super-linter@v5
+      uses: github/super-linter@962a6409c1b303d0e53a9d34ada577a0362f4fae # v5.2.1 https://github.com/super-linter/super-linter/commit/962a6409c1b303d0e53a9d34ada577a0362f4fae
       env:
         DEFAULT_BRANCH: ${{ github.event.inputs.default-branch }}
         GITHUB_TOKEN: ${{ github.event.inputs.token }}
@@ -32,7 +32,7 @@ runs:
     # Helm Lint
     - name: Set up Helm
       if: ${{ github.event.inputs.helm-lint }}
-      uses: azure/setup-helm@v3
+      uses: azure/setup-helm@5119fcb9089d432beecbf79bb2c7915207344b78 # v3.5 https://github.com/Azure/setup-helm/commit/5119fcb9089d432beecbf79bb2c7915207344b78
       with:
         version: ${{ github.event.inputs.helm-version }}
 

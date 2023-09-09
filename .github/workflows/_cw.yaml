@@ -1,0 +1,15 @@
+name: Cleanup
+
+on:
+  pull_request:
+    types:
+      - closed
+  schedule:
+    - cron: 30 1 * * 6
+  workflow_dispatch: {}
+
+permissions: read-all
+
+jobs:
+  cleanup:
+    uses: labsonline/cicd/.github/workflows/cleanup.yml@latest

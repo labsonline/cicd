@@ -1,4 +1,4 @@
-name: Gate Workflow
+name: Gates
 
 on:
   workflow_call:
@@ -21,7 +21,7 @@ jobs:
           persist-credentials: false
 
       - name: Trivy Scan
-        uses: labsonline/cicd/.github/actions/trivy@main
+        uses: labsonline/cicd/.github/actions/trivy@latest
         with:
           github-pat: ${{ secrets.GITHUB_TOKEN }}
           upload-scan-result: ${{ github.ref == 'refs/heads/main' && github.event_name == 'push' }}

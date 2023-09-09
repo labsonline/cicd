@@ -1,0 +1,14 @@
+name: Releases
+
+on:
+  push:
+    branches:
+      - main
+
+permissions: read-all
+
+jobs:
+  release:
+    uses: labsonline/cicd/.github/workflows/release.yml@latest
+    permissions:
+      contents: write

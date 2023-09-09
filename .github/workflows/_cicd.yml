@@ -1,23 +1,14 @@
-name: Gate CI
+name: Contiuos Integration
 
 on:
-  push: {}
-  pull_request: {}
-  schedule:
-    - cron: 30 1 * * 6
+  - push
 
 permissions: read-all
 
 jobs:
   bot:
-    uses: labsonline/cicd/.github/workflows/bot.yml@main
+    uses: labsonline/cicd/.github/workflows/bot.yml@latest
   gate:
-    uses: labsonline/cicd/.github/workflows/gate.yml@main
+    uses: labsonline/cicd/.github/workflows/gate.yml@latest
   scorecard:
-    uses: labsonline/cicd/.github/workflows/scorecard.yml@main
-  release:
-    uses: labsonline/cicd/.github/workflows/release.yml@main
-    permissions:
-      contents: write
-  cleanup:
-    uses: labsonline/cicd/.github/workflows/cleanup.yml@main
+    uses: labsonline/cicd/.github/workflows/scorecard.yml@latest

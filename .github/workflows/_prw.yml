@@ -1,13 +1,14 @@
-name: PR Review
+name: Review
 
 on:
   pull_request:
     types:
+      - edited
       - opened
-      - ready_for_review
+      - reopened
 
 permissions: read-all
 
 jobs:
   review:
-    uses: labsonline/cicd/.github/workflows/review.yml@main
+    uses: labsonline/cicd/.github/workflows/review.yml@latest
