@@ -8,7 +8,8 @@ on:
         description: Path to the files to release
         default: "*"
 
-permissions: read-all
+permissions:
+  contents: write
 
 jobs:
   prerelease:
@@ -24,9 +25,9 @@ jobs:
       - name: Pre Release
         uses: marvinpinto/action-automatic-releases@919008cf3f741b179569b7a6fb4d8860689ab7f0 # v1.2.1 https://github.com/marvinpinto/action-automatic-releases/commit/919008cf3f741b179569b7a6fb4d8860689ab7f0
         with:
-          repo_token: ${{ secrets.GITHUB_TOKEN }}
-          prerelease: true
           automatic_release_tag: latest
+          prerelease: true
+          repo_token: ${{ github.token }}
           title: Dev Build
           files: |
             ${{ github.event.inputs.files-path }}
@@ -45,5 +46,6 @@ jobs:
         uses: marvinpinto/action-automatic-releases@919008cf3f741b179569b7a6fb4d8860689ab7f0 # v1.2.1 https://github.com/marvinpinto/action-automatic-releases/commit/919008cf3f741b179569b7a6fb4d8860689ab7f0
         with:
           prerelease: false
+          repo_token: ${{ github.token }}
           files: |
             ${{ github.event.inputs.files-path }}
