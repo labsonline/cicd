@@ -2,6 +2,10 @@
 
 ---
 
+[![Contiuos Integration](https://github.com/labsonline/cicd/actions/workflows/_cicd.yml/badge.svg)](https://github.com/labsonline/cicd/actions/workflows/_cicd.yml) [![Review](https://github.com/labsonline/cicd/actions/workflows/_prw.yml/badge.svg)](https://github.com/labsonline/cicd/actions/workflows/_prw.yml) [![Releases](https://github.com/labsonline/cicd/actions/workflows/_arw.yml/badge.svg)](https://github.com/labsonline/cicd/actions/workflows/_arw.yml)
+
+---
+
 Copyright © 2023 Schubert Anselme <schubert@anselm.es>
 
 This program is free software: you can redistribute it and/or modify
