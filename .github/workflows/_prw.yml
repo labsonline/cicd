@@ -1,0 +1,13 @@
+name: Pull Request Review
+
+on:
+  pull_request:
+    types:
+      - opened
+      - ready_for_review
+
+permissions: read-all
+
+jobs:
+  review:
+    uses: labsonline/cicd/.github/workflows/review.yml@main
