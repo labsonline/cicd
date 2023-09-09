@@ -21,7 +21,6 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-          persist-credentials: false
 
       - name: Run analysis
         uses: ossf/scorecard-action@08b4669551908b1024bb425080c797723083c031 # v2.2.0 https://github.com/ossf/scorecard-action/commit/08b4669551908b1024bb425080c797723083c031
