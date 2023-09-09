@@ -9,6 +9,6 @@ permissions: read-all
 
 jobs:
   release:
-    uses: labsonline/cicd/.github/workflows/release.yml@latest
+    uses: labsonline/cicd/.github/workflows/release.yml@614edbe626a45e419c8b1f666a70c27b30fc7d0f # latest https://github.com/labsonline/cicd/commit/614edbe626a45e419c8b1f666a70c27b30fc7d0f
     permissions:
       contents: write

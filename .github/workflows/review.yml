@@ -19,11 +19,11 @@ jobs:
         uses: kentaro-m/auto-assign-action@3e986bf9c274729de0d85191da42484917883328 # v1.2.5 https://github.com/kentaro-m/auto-assign-action/commit/3e986bf9c274729de0d85191da42484917883328
 
       - name: Lint
-        uses: labsonline/cicd/.github/actions/lint@latest
+        uses: labsonline/cicd/.github/actions/lint@614edbe626a45e419c8b1f666a70c27b30fc7d0f # latest https://github.com/labsonline/cicd/commit/614edbe626a45e419c8b1f666a70c27b30fc7d0f
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Review
-        uses: labsonline/cicd/.github/actions/pr@latest
+        uses: labsonline/cicd/.github/actions/pr@614edbe626a45e419c8b1f666a70c27b30fc7d0f # latest https://github.com/labsonline/cicd/commit/614edbe626a45e419c8b1f666a70c27b30fc7d0f
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
