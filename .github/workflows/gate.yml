@@ -1,7 +1,12 @@
 name: Gate Workflow
 
 on:
-  - workflow_call
+  workflow_call:
+    inputs:
+      upload:
+        type: boolean
+        description: Upload the result to the GitHub repository
+        default: false
 
 permissions: read-all
 
@@ -13,8 +18,10 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          persist-credentials: false
 
       - name: Trivy Scan
         uses: labsonline/cicd/.github/actions/trivy@main
         with:
           github-pat: ${{ secrets.GITHUB_TOKEN }}
+          upload-scan-result: ${{ github.ref == 'refs/heads/main' && github.event_name == 'push' }}

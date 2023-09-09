@@ -19,9 +19,6 @@ jobs:
   stale:
     runs-on: ubuntu-latest
     if: ${{ github.event_name == 'schedule' }}
-    permissions:
-      issues: write
-      pull-requests: write
     steps:
       - uses: actions/stale@v8
         with:
@@ -34,13 +31,10 @@ jobs:
   # Cleanup cache
   cache:
     runs-on: ubuntu-latest
-    if: ${{ inputs.clean || github.event_name == 'schedule' }}
+    if: ${{ github.event.inputs.clean || github.event_name == 'schedule' }}
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
       - name: Cleanup cache
+        shell: bash
         env:
           BRANCH: ${{ github.event.inputs.branch }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

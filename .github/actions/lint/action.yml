@@ -1,50 +1,42 @@
 name: Linting Workflow
+description: Linting Workflow
 
 inputs:
   default-branch:
-    type: string
-    description: Default Branch
+    description: Default branch to work on
     default: main
+  helm-chart:
+    description: Helm chart path
   helm-lint:
-    type: boolean
-    description: Perform Helm Linting
-    default: false
+    description: Perform helm linting
   helm-version:
-    type: string
-    description: Helm Version
+    description: Helm version
     default: v3.11.2
   validate-all:
-    type: boolean
-    description: Validate All Code
-    default: false
+    description: Lint everything
   github-token:
-    type: string
     description: GitHub Token
     required: true
 
 runs:
   using: composite
   steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
-      with:
-        fetch-depth: 0
-
     # Super-Linter
     - name: Lint Code Base
       uses: github/super-linter@v5
       env:
-        VALIDATE_ALL_CODEBASE: ${{ inputs.validate-all }}
-        DEFAULT_BRANCH: ${{ inputs.default-branch }}
-        GITHUB_TOKEN: ${{ inputs.token }}
+        DEFAULT_BRANCH: ${{ github.event.inputs.default-branch }}
+        GITHUB_TOKEN: ${{ github.event.inputs.token }}
+        VALIDATE_ALL_CODEBASE: ${{ github.event.inputs.validate-all }}
 
-    # FIXME: Helm Lint
+    # Helm Lint
     - name: Set up Helm
-      if: ${{ inputs.helm-lint }}
+      if: ${{ github.event.inputs.helm-lint }}
       uses: azure/setup-helm@v3
       with:
-        version: ${{ inputs.helm-version }}
+        version: ${{ github.event.inputs.helm-version }}
+
     - name: Lint Helm Charts
-      if: ${{ inputs.helm-lint }}
+      if: ${{ github.event.inputs.helm-lint }}
       shell: bash
       run: helm lint deployment/chart
