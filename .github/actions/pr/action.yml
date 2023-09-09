@@ -10,45 +10,40 @@ inputs:
     description: Language to analyze
   codeql-queries:
     description: Queries to run
-  github-token:
-    description: GitHub Token
-    required: true
 
 runs:
   using: composite
   steps:
     # Labeler
     - uses: actions/labeler@v4
-      with:
-        repo-token: ${{ github.event.inputs.github-token }}
 
     # Dependency Review
     - name: Dependency Review
       uses: actions/dependency-review-action@v3
 
     # CodeQL Analysis
-    - name: Initialize CodeQL
-      if: ${{ github.event.inputs.codeql-analysis }}
-      uses: github/codeql-action/init@e4262713b504983e61c7728f5452be240d9385a7 # v2.21.5 https://github.com/github/codeql-action/commit/e4262713b504983e61c7728f5452be240d9385a7
-      with:
-        languages: ${{ github.event.inputs.codeql-language }}
-        queries: ${{ github.event.inputs.codeql-queries }} # security-extended,security-and-quality
+    # - name: Initialize CodeQL
+    #   if: ${{ github.event.inputs.codeql-analysis }}
+    #   uses: github/codeql-action/init@e4262713b504983e61c7728f5452be240d9385a7 # v2.21.5 https://github.com/github/codeql-action/commit/e4262713b504983e61c7728f5452be240d9385a7
+    #   with:
+    #     languages: ${{ github.event.inputs.codeql-language }}
+    #     queries: ${{ github.event.inputs.codeql-queries }} # security-extended,security-and-quality
 
-    - name: Autobuild
-      if: ${{ github.event.inputs.codeql-analysis && github.event.inputs.codeql-build-script == "" }}
-      uses: github/codeql-action/autobuild@e4262713b504983e61c7728f5452be240d9385a7 # v2.21.5 https://github.com/github/codeql-action/commit/e4262713b504983e61c7728f5452be240d9385a7
+    # - name: Autobuild
+    #   if: ${{ github.event.inputs.codeql-analysis && github.event.inputs.codeql-build-script == "" }}
+    #   uses: github/codeql-action/autobuild@e4262713b504983e61c7728f5452be240d9385a7 # v2.21.5 https://github.com/github/codeql-action/commit/e4262713b504983e61c7728f5452be240d9385a7
 
-    - name: Custom Build
-      if: ${{ github.event.inputs.codeql-analysis && github.event.inputs.codeql-build-script != "" }}
-      shell: bash
-      env:
-        BUILD_SCRIPT: ${{ github.event.inputs.codeql-build-script }}
-      run: |
-        echo "Run, Build Application using script"
-        $BUILD_SCRIPT
+    # - name: Custom Build
+    #   if: ${{ github.event.inputs.codeql-analysis && github.event.inputs.codeql-build-script != "" }}
+    #   shell: bash
+    #   env:
+    #     BUILD_SCRIPT: ${{ github.event.inputs.codeql-build-script }}
+    #   run: |
+    #     echo "Run, Build Application using script"
+    #     $BUILD_SCRIPT
 
-    - name: Perform CodeQL Analysis
-      if: ${{ github.event.inputs.codeql-analysis }}
-      uses: github/codeql-action/analyze@e4262713b504983e61c7728f5452be240d9385a7 # v2.21.5 https://github.com/github/codeql-action/commit/e4262713b504983e61c7728f5452be240d9385a7
-      with:
-        category: /language:${{ github.event.inputs.codeql-language }}
+    # - name: Perform CodeQL Analysis
+    #   if: ${{ github.event.inputs.codeql-analysis }}
+    #   uses: github/codeql-action/analyze@e4262713b504983e61c7728f5452be240d9385a7 # v2.21.5 https://github.com/github/codeql-action/commit/e4262713b504983e61c7728f5452be240d9385a7
+    #   with:
+    #     category: /language:${{ github.event.inputs.codeql-language }}

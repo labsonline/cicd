@@ -14,8 +14,6 @@ jobs:
   prerelease:
     runs-on: ubuntu-latest
     if: ${{ github.ref == 'refs/heads/main' }}
-    permissions:
-      contents: write
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -36,8 +34,6 @@ jobs:
   release:
     runs-on: ubuntu-latest
     if: ${{ github.ref == 'refs/tags/v*' }}
-    permissions:
-      contents: write
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
