@@ -10,4 +10,4 @@ permissions: read-all
 
 jobs:
   review:
-    uses: labsonline/cicd/.github/workflows/review.yml@main
+    uses: labsonline/cicd/.github/workflows/review.yml@dev # FIXME: @main

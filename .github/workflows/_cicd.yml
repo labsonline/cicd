@@ -10,10 +10,12 @@ permissions: read-all
 
 jobs:
   bot:
-    uses: labsonline/cicd/.github/workflows/bot.yml@main # FIXME: dependabot action
+    uses: labsonline/cicd/.github/workflows/bot.yml@dev # FIXME: @main
   gate:
-    uses: labsonline/cicd/.github/workflows/gate.yml@main
+    uses: labsonline/cicd/.github/workflows/gate.yml@dev # FIXME: @main
   scorecard:
-    uses: labsonline/cicd/.github/workflows/scorecard.yml@main
+    uses: labsonline/cicd/.github/workflows/scorecard.yml@dev # FIXME: @main
+  release:
+    uses: labsonline/cicd/.github/workflows/release.yml@dev # FIXME: @main
   cleanup:
-    uses: labsonline/cicd/.github/workflows/cleanup.yml@main
+    uses: labsonline/cicd/.github/workflows/cleanup.yml@dev # FIXME: @main
