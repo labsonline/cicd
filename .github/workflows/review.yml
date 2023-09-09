@@ -1,11 +1,9 @@
 name: Pull Request Review
 
 on:
-  workflow_call: {}
-  pull_request:
-    types:
-      - opened
-      - ready_for_review
+  - workflow_call
+
+permissions: read-all
 
 jobs:
   review:

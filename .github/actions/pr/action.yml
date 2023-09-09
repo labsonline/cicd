@@ -3,12 +3,21 @@ name: Pull Request Workflow
 inputs:
   codeql-analysis:
     type: boolean
+    description: Perform CodeQL Analysis
     default: false
+  codeql-build-script:
+    type: string
+    description: Custom Build Script
   codeql-language:
     type: string
+    description: CodeQL Language
+  codeql-queries:
+    type: string
+    description: CodeQL Queries
   github-token:
     type: string
     required: true
+    description: GitHub Token
 
 runs:
   using: composite
@@ -28,11 +37,23 @@ runs:
       uses: actions/dependency-review-action@v3
 
     # CodeQL Analysis
-    # - name: Initialize CodeQL
-    #   uses: github/codeql-action/init@v2
-    #   with:
-    #     languages: ${{ input.codeql-language }}
-    # - name: Autobuild
-    #   uses: github/codeql-action/autobuild@v2
-    # - name: Perform CodeQL Analysis
-    #   uses: github/codeql-action/analyze@v2
+    - name: Initialize CodeQL
+      if: ${{ inputs.codeql-analysis }}
+      uses: github/codeql-action/init@v2
+      with:
+        languages: ${{ input.codeql-language }}
+        queries: ${{ inpute.codeql-queries }} # security-extended,security-and-quality
+    - name: Autobuild
+      if: ${{ inputs.codeql-analysis && inputs.codeql-build-script == "" }}
+      uses: github/codeql-action/autobuild@v2
+    - name: Custom Build
+      if: ${{ inputs.codeql-analysis && inputs.codeql-build-script != "" }}
+      shell: bash
+      run: |
+        echo "Run, Build Application using script"
+        ${{ inputs.codeql-build-script }}
+    - name: Perform CodeQL Analysis
+      if: ${{ inputs.codeql-analysis }}
+      uses: github/codeql-action/analyze@v2
+      with:
+        category: /language:${{ input.codeql-language }}

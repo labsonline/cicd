@@ -3,18 +3,23 @@ name: Linting Workflow
 inputs:
   default-branch:
     type: string
+    description: Default Branch
     default: main
   helm-lint:
     type: boolean
+    description: Perform Helm Linting
     default: false
   helm-version:
     type: string
+    description: Helm Version
     default: v3.11.2
   validate-all:
     type: boolean
+    description: Validate All Code
     default: false
   github-token:
     type: string
+    description: GitHub Token
     required: true
 
 runs:
@@ -34,9 +39,12 @@ runs:
         GITHUB_TOKEN: ${{ inputs.token }}
 
     # FIXME: Helm Lint
-    # - name: Set up Helm
-    #   uses: azure/setup-helm@v3
-    #   with:
-    #     version: ${{ inputs.helm-version }}
-    # - name: Lint Helm Charts
-    #   run: helm lint deployment/chart
+    - name: Set up Helm
+      if: ${{ inputs.helm-lint }}
+      uses: azure/setup-helm@v3
+      with:
+        version: ${{ inputs.helm-version }}
+    - name: Lint Helm Charts
+      if: ${{ inputs.helm-lint }}
+      shell: bash
+      run: helm lint deployment/chart

@@ -12,11 +12,13 @@ on:
         description: Whether to clean or not
         default: false
 
+permissions: read-all
+
 jobs:
   # Cleanup stale issues and PRs
   stale:
     runs-on: ubuntu-latest
-    if: github.event_name == 'schedule'
+    if: ${{ github.event_name == 'schedule' }}
     permissions:
       issues: write
       pull-requests: write
@@ -32,7 +34,7 @@ jobs:
   # Cleanup cache
   cache:
     runs-on: ubuntu-latest
-    if: inputs.clean || github.event_name == 'schedule'
+    if: ${{ inputs.clean || github.event_name == 'schedule' }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v4

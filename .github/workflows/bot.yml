@@ -2,15 +2,10 @@ name: Dependabot CI
 on:
   workflow_call:
     inputs:
-      dependency-name:
-        type: string
-        required: true
-      dependency-type:
-        type: string
-        default: production
       update-type:
         type: string
         default: semver-patch
+        description: The type of update to apply to the dependency
 
 permissions:
   pull-requests: write
@@ -20,25 +15,22 @@ permissions:
 jobs:
   dependabot:
     runs-on: ubuntu-latest
-    if: github.actor == 'dependabot[bot]'
+    if: ${{ github.actor == 'dependabot[bot]' }}
     steps:
       - name: Dependabot metadata
         id: metadata
         uses: dependabot/fetch-metadata@v1
         with:
           github-token: "${{ secrets.GITHUB_TOKEN }}"
-      - name: Add a label for all ${{ inputs.dependency-type }} dependencies
-        if: steps.metadata.outputs.dependency-type == "direct:${{ inputs.dependency-type }}"
-        run: gh pr edit "$PR_URL" --add-label "production"
-        env:
-          PR_URL: ${{ github.event.pull_request.html_url }}
+
       - name: Approve a PR
         run: gh pr review --approve "$PR_URL"
         env:
           PR_URL: ${{ github.event.pull_request.html_url }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Enable auto-merge for Dependabot PRs
-        if: contains(steps.metadata.outputs.dependency-names, ${{ inputs.dependency-name }}) && steps.metadata.outputs.update-type == "version-update:${{ inputs.update-type }}"
+        if: ${{ steps.metadata.outputs.update-type == 'version-update:inputs.update-type' }}
         run: gh pr merge --auto --merge "$PR_URL"
         env:
           PR_URL: ${{ github.event.pull_request.html_url }}
