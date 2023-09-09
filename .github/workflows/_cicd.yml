@@ -7,8 +7,8 @@ permissions: read-all
 
 jobs:
   bot:
-    uses: labsonline/cicd/.github/workflows/bot.yml@614edbe626a45e419c8b1f666a70c27b30fc7d0f # latest https://github.com/labsonline/cicd/commit/614edbe626a45e419c8b1f666a70c27b30fc7d0f
+    uses: labsonline/cicd/.github/workflows/bot.yml@b510ba2b18998d47dd6b725a395b9c527922370d # v0.1.0-alpha.1 https://github.com/labsonline/cicd/commit/b510ba2b18998d47dd6b725a395b9c527922370d
   gate:
-    uses: labsonline/cicd/.github/workflows/gate.yml@614edbe626a45e419c8b1f666a70c27b30fc7d0f # latest https://github.com/labsonline/cicd/commit/614edbe626a45e419c8b1f666a70c27b30fc7d0f
+    uses: labsonline/cicd/.github/workflows/gate.yml@b510ba2b18998d47dd6b725a395b9c527922370d # v0.1.0-alpha.1 https://github.com/labsonline/cicd/commit/b510ba2b18998d47dd6b725a395b9c527922370d
   scorecard:
-    uses: labsonline/cicd/.github/workflows/scorecard.yml@614edbe626a45e419c8b1f666a70c27b30fc7d0f # latest https://github.com/labsonline/cicd/commit/614edbe626a45e419c8b1f666a70c27b30fc7d0f
+    uses: labsonline/cicd/.github/workflows/scorecard.yml@b510ba2b18998d47dd6b725a395b9c527922370d # v0.1.0-alpha.1 https://github.com/labsonline/cicd/commit/b510ba2b18998d47dd6b725a395b9c527922370d
