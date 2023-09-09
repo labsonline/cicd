@@ -1,7 +1,12 @@
 name: Gate Workflow
 
 on:
-  - workflow_call
+  workflow_call:
+    inputs:
+      upload:
+        type: boolean
+        description: Upload the result to the GitHub repository
+        default: false
 
 permissions: read-all
 
