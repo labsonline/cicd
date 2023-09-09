@@ -1,4 +1,5 @@
-name: Dependabot CI
+name: Dependabot
+
 on:
   workflow_call:
     inputs:
