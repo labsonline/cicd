@@ -17,10 +17,10 @@ jobs:
           persist-credentials: false
 
       - name: Lint
-        uses: labsonline/cicd/.github/actions/lint@ee4255cc0c2a62b557dd4f3a102ff8dd4e3760e5 # v0.1.0-alpha.3 https://github.com/labsonline/cicd/commit/ee4255cc0c2a62b557dd4f3a102ff8dd4e3760e5
+        uses: labsonline/cicd/.github/actions/lint@d2a6707421c9ea2db7fca9118708aa2d337a6ab0 # v0.1.0 https://github.com/labsonline/cicd/commit/d2a6707421c9ea2db7fca9118708aa2d337a6ab0
 
       - name: Review
-        uses: labsonline/cicd/.github/actions/pr@ee4255cc0c2a62b557dd4f3a102ff8dd4e3760e5 # v0.1.0-alpha.3 https://github.com/labsonline/cicd/commit/ee4255cc0c2a62b557dd4f3a102ff8dd4e3760e5
+        uses: labsonline/cicd/.github/actions/pr@d2a6707421c9ea2db7fca9118708aa2d337a6ab0 # v0.1.0 https://github.com/labsonline/cicd/commit/d2a6707421c9ea2db7fca9118708aa2d337a6ab0
 
       - name: Assign
         uses: kentaro-m/auto-assign-action@3e986bf9c274729de0d85191da42484917883328 # v1.2.5 https://github.com/kentaro-m/auto-assign-action/commit/3e986bf9c274729de0d85191da42484917883328
