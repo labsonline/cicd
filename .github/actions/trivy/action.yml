@@ -29,6 +29,7 @@ runs:
 
     - name: Run Trivy SBOM and submit results to Dependency Graph
       uses: aquasecurity/trivy-action@master
+      if: ${{ inputs.generate-sbom }}
       with:
         format: github
         github-pat: ${{ github.event.inputs.github-pat }}
