@@ -3,12 +3,23 @@ name: Contiuos Integration
 on:
   - push
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true # ${{ github.ref != 'refs/heads/master' }}
+
 permissions: read-all
 
 jobs:
   bot:
-    uses: labsonline/cicd/.github/workflows/bot.yml@d2a6707421c9ea2db7fca9118708aa2d337a6ab0 # v0.1.0 https://github.com/labsonline/cicd/commit/d2a6707421c9ea2db7fca9118708aa2d337a6ab0
+    uses: labsonline/cicd/.github/workflows/bot.yml@main # v0.1.0 https://github.com/labsonline/cicd/commit/d2a6707421c9ea2db7fca9118708aa2d337a6ab0
+    permissions:
+      issues: write
+      pull-requests: write
+      repository-projects: write
   gate:
     uses: labsonline/cicd/.github/workflows/gate.yml@d2a6707421c9ea2db7fca9118708aa2d337a6ab0 # v0.1.0 https://github.com/labsonline/cicd/commit/d2a6707421c9ea2db7fca9118708aa2d337a6ab0
   scorecard:
-    uses: labsonline/cicd/.github/workflows/scorecard.yml@d2a6707421c9ea2db7fca9118708aa2d337a6ab0 # v0.1.0 https://github.com/labsonline/cicd/commit/d2a6707421c9ea2db7fca9118708aa2d337a6ab0
+    uses: labsonline/cicd/.github/workflows/scorecard.yml@main # v0.1.0 https://github.com/labsonline/cicd/commit/d2a6707421c9ea2db7fca9118708aa2d337a6ab0
+    permissions:
+      id-token: write
+      security-events: write

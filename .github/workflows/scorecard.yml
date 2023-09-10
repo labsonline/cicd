@@ -10,12 +10,16 @@ on:
         type: boolean
         description: Whether to publish results to OpenSSF REST API
 
-permissions: read-all
+permissions:
+  security-events: read
 
 jobs:
   analysis:
     runs-on: ubuntu-latest
     if: ${{ github.ref == 'refs/heads/main' }}
+    permissions:
+      id-token: write
+      security-events: write
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -26,7 +30,7 @@ jobs:
         uses: ossf/scorecard-action@08b4669551908b1024bb425080c797723083c031 # v2.2.0 https://github.com/ossf/scorecard-action/commit/08b4669551908b1024bb425080c797723083c031
         with:
           publish_results: true
-          repo_token: ${{ github.event.inputs.score-card-token }}
+          repo_token: ${{ secrets.SCORECARD_TOKEN }}
           results_file: results.sarif
           results_format: sarif
 

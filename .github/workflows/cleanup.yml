@@ -12,21 +12,32 @@ on:
         description: Whether to clean or not
         default: false
 
-permissions: read-all
+permissions:
+  contents: write
 
 jobs:
   # Cleanup stale issues and PRs
   stale:
     runs-on: ubuntu-latest
     if: ${{ github.event_name == 'schedule' }}
+    permissions:
+      contents: write
+      issues: write
+      pull-requests: write
     steps:
       - uses: actions/stale@v8
         with:
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
-          stale-issue-message: Stale issue message
-          stale-pr-message: Stale pull request message
+          any-of-labels: needs-more-info,needs-demo
+          days-before-close: 5
+          days-before-pr-close: -1
+          days-before-stale: 30
+          exempt-all-pr-assignees: true
+          exempt-all-pr-milestones: true
+          exempt-issue-milestones: future,alpha,beta
           stale-issue-label: no-issue-activity
+          stale-issue-message: Message to comment on stale issues. If none provided, will not mark issues stale
           stale-pr-label: no-pr-activity
+          stale-pr-message: Message to comment on stale PRs. If none provided, will not mark PRs stale
 
   # Cleanup cache
   cache:
@@ -37,6 +48,6 @@ jobs:
         shell: bash
         env:
           BRANCH: ${{ github.event.inputs.branch }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ github.token }}
           REPO: ${{ github.repository }}
         run: ${{ github.action_path }}/../scripts/delete-gh-actions-cache.sh

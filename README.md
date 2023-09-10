@@ -2,7 +2,7 @@
 
 ---
 
-[![Contiuos Integration](https://github.com/labsonline/cicd/actions/workflows/_cicd.yml/badge.svg)](https://github.com/labsonline/cicd/actions/workflows/_cicd.yml) [![Review](https://github.com/labsonline/cicd/actions/workflows/_prw.yml/badge.svg)](https://github.com/labsonline/cicd/actions/workflows/_prw.yml) [![Releases](https://github.com/labsonline/cicd/actions/workflows/_arw.yml/badge.svg)](https://github.com/labsonline/cicd/actions/workflows/_arw.yml)
+[![Contiuos Integration](https://github.com/labsonline/cicd/actions/workflows/_cicd.yml/badge.svg)](https://github.com/labsonline/cicd/actions/workflows/_cicd.yml) [![Review](https://github.com/labsonline/cicd/actions/workflows/_prw.yml/badge.svg)](https://github.com/labsonline/cicd/actions/workflows/_prw.yml) [![Releases](https://github.com/labsonline/cicd/actions/workflows/_arw.yml/badge.svg)](https://github.com/labsonline/cicd/actions/workflows/_arw.yml) [![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/labsonline/cicd/badge)](https://securityscorecards.dev/viewer/?uri=github.com/labsonline/cicd)
 
 ---
 
