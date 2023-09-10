@@ -34,6 +34,7 @@ jobs:
           files: |
             ${{ github.event.inputs.files-path }}
 
+  # FIXME: release
   release:
     runs-on: ubuntu-latest
     if: ${{ github.ref == 'refs/tags/v*' }}
