@@ -11,15 +11,15 @@ permissions: read-all
 
 jobs:
   bot:
-    uses: labsonline/cicd/.github/workflows/bot.yml@e18973894cf06830cfe5a432beee8eb302f724c7 # v0.1.1-alpha.1 https://github.com/labsonline/cicd/commit/e18973894cf06830cfe5a432beee8eb302f724c7
+    uses: labsonline/cicd/.github/workflows/bot.yml@424f749d3881c969d360beadb70ed8614066be03 # v0.1.2 https://github.com/labsonline/cicd/commit/424f749d3881c969d360beadb70ed8614066be03
     permissions:
       issues: write
       pull-requests: write
       repository-projects: write
   gate:
-    uses: labsonline/cicd/.github/workflows/gate.yml@e18973894cf06830cfe5a432beee8eb302f724c7 # v0.1.1-alpha.1 https://github.com/labsonline/cicd/commit/e18973894cf06830cfe5a432beee8eb302f724c7
+    uses: labsonline/cicd/.github/workflows/gate.yml@424f749d3881c969d360beadb70ed8614066be03 # v0.1.2 https://github.com/labsonline/cicd/commit/424f749d3881c969d360beadb70ed8614066be03
   scorecard:
-    uses: labsonline/cicd/.github/workflows/scorecard.yml@e18973894cf06830cfe5a432beee8eb302f724c7 # v0.1.1-alpha.1 https://github.com/labsonline/cicd/commit/e18973894cf06830cfe5a432beee8eb302f724c7
+    uses: labsonline/cicd/.github/workflows/scorecard.yml@424f749d3881c969d360beadb70ed8614066be03 # v0.1.2 https://github.com/labsonline/cicd/commit/424f749d3881c969d360beadb70ed8614066be03
     permissions:
       id-token: write
       security-events: write
