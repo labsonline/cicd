@@ -7,20 +7,31 @@ permissions:
   pull-requests: write
 
 jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3df4ab11eba7bda6032a0b82a6bb43b11571feac # v4.0.0 https://github.com/actions/checkout/commit/3df4ab11eba7bda6032a0b82a6bb43b11571feac
+        with:
+          fetch-depth: 0
+          persist-credentials: false  
+      - uses: labsonline/cicd/.github/actions/lint@424f749d3881c969d360beadb70ed8614066be03 # v0.1.2 https://github.com/labsonline/cicd/commit/424f749d3881c969d360beadb70ed8614066be03
+
   review:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@3df4ab11eba7bda6032a0b82a6bb43b11571feac # v4.0.0 https://github.com/actions/checkout/commit/3df4ab11eba7bda6032a0b82a6bb43b11571feac
+      - uses: actions/checkout@3df4ab11eba7bda6032a0b82a6bb43b11571feac # v4.0.0 https://github.com/actions/checkout/commit/3df4ab11eba7bda6032a0b82a6bb43b11571feac
         with:
           fetch-depth: 0
           persist-credentials: false
 
-      - name: Lint
-        uses: labsonline/cicd/.github/actions/lint@424f749d3881c969d360beadb70ed8614066be03 # v0.1.2 https://github.com/labsonline/cicd/commit/424f749d3881c969d360beadb70ed8614066be03
+      - uses: labsonline/cicd/.github/actions/pr@424f749d3881c969d360beadb70ed8614066be03 # v0.1.2 https://github.com/labsonline/cicd/commit/424f749d3881c969d360beadb70ed8614066be03
 
-      - name: Review
-        uses: labsonline/cicd/.github/actions/pr@424f749d3881c969d360beadb70ed8614066be03 # v0.1.2 https://github.com/labsonline/cicd/commit/424f749d3881c969d360beadb70ed8614066be03
+  assign:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3df4ab11eba7bda6032a0b82a6bb43b11571feac # v4.0.0 https://github.com/actions/checkout/commit/3df4ab11eba7bda6032a0b82a6bb43b11571feac
+        with:
+          fetch-depth: 0
+          persist-credentials: false
 
-      - name: Assign
-        uses: kentaro-m/auto-assign-action@3e986bf9c274729de0d85191da42484917883328 # v1.2.5 https://github.com/kentaro-m/auto-assign-action/commit/3e986bf9c274729de0d85191da42484917883328
+      - uses: kentaro-m/auto-assign-action@3e986bf9c274729de0d85191da42484917883328 # v1.2.5 https://github.com/kentaro-m/auto-assign-action/commit/3e986bf9c274729de0d85191da42484917883328
