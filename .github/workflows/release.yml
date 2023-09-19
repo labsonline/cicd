@@ -13,19 +13,18 @@ permissions:
 
 jobs:
   prerelease:
+    name: Prerelease
     runs-on: ubuntu-latest
     if: ${{ github.ref == 'refs/heads/main' }}
     permissions:
       contents: write
     steps:
-      - name: Checkout code
-        uses: actions/checkout@3df4ab11eba7bda6032a0b82a6bb43b11571feac # v4.0.0 https://github.com/actions/checkout/commit/3df4ab11eba7bda6032a0b82a6bb43b11571feac
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
           persist-credentials: false
 
-      - name: Pre Release
-        uses: marvinpinto/action-automatic-releases@919008cf3f741b179569b7a6fb4d8860689ab7f0 # v1.2.1 https://github.com/marvinpinto/action-automatic-releases/commit/919008cf3f741b179569b7a6fb4d8860689ab7f0
+      - uses: marvinpinto/action-automatic-releases@919008cf3f741b179569b7a6fb4d8860689ab7f0 # v1.2.1 https://github.com/marvinpinto/action-automatic-releases/commit/919008cf3f741b179569b7a6fb4d8860689ab7f0
         with:
           automatic_release_tag: latest
           prerelease: true
@@ -36,13 +35,13 @@ jobs:
 
   # FIXME: release
   release:
+    name: Release
     runs-on: ubuntu-latest
-    if: ${{ github.ref == 'refs/tags/v*' }}
+    if: ${{ github.ref_type == 'tag' }}
     permissions:
       contents: write
     steps:
-      - name: Checkout code
-        uses: actions/checkout@3df4ab11eba7bda6032a0b82a6bb43b11571feac # v4.0.0 https://github.com/actions/checkout/commit/3df4ab11eba7bda6032a0b82a6bb43b11571feac
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
           persist-credentials: false
@@ -50,8 +49,7 @@ jobs:
       # TODO: package
       # TODO: sign
 
-      - name: Release
-        uses: marvinpinto/action-automatic-releases@919008cf3f741b179569b7a6fb4d8860689ab7f0 # v1.2.1 https://github.com/marvinpinto/action-automatic-releases/commit/919008cf3f741b179569b7a6fb4d8860689ab7f0
+      - uses: marvinpinto/action-automatic-releases@919008cf3f741b179569b7a6fb4d8860689ab7f0 # v1.2.1 https://github.com/marvinpinto/action-automatic-releases/commit/919008cf3f741b179569b7a6fb4d8860689ab7f0
         with:
           prerelease: false
           repo_token: ${{ github.token }}

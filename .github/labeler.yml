@@ -8,3 +8,20 @@ github-actions:
   - .github/workflows/*/**
   - .github/dependabot.yml
   - .github/dependabot.yml/**
+
+# Add 'docs' label to any changes in the 'docs' directory
+docs:
+  - docs/*
+  - docs/*/**
+  - README.md
+  - README.md/**
+
+# Add 'scripts' label to any changes in the 'scripts' directory
+scripts:
+  - scripts/*
+  - scripts/*/**
+
+# Add 'tooling' label to any changes in the 'tools' directory
+tooling:
+  - tools/*
+  - tools/*/**

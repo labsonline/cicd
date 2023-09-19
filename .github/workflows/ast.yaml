@@ -1,0 +1,51 @@
+name: AST
+permissions: read-all
+
+on:
+  workflow_call:
+    inputs:
+      codeql-build-script:
+        description: Build script
+        type: string
+      codeql-language:
+        description: Language to analyze
+        required: true
+        type: string
+      codeql-queries:
+        description: Queries to run (e.g. security-extended,security-and-quality)
+        type: string
+
+jobs:
+  codeql:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@e4262713b504983e61c7728f5452be240d9385a7 # v2.21.5 https://github.com/github/codeql-action/commit/e4262713b504983e61c7728f5452be240d9385a7
+        with:
+          languages: ${{ github.event.inputs.codeql-language }}
+          queries: ${{ github.event.inputs.codeql-queries }}
+
+      - name: Autobuild
+        if: ${{ ! github.event.inputs.codeql-build-script }}
+        uses: github/codeql-action/autobuild@e4262713b504983e61c7728f5452be240d9385a7 # v2.21.5 https://github.com/github/codeql-action/commit/e4262713b504983e61c7728f5452be240d9385a7
+
+      - name: Custom Build
+        if: ${{ github.event.inputs.codeql-build-script }}
+        shell: bash
+        env:
+          BUILD_SCRIPT: ${{ github.event.inputs.codeql-build-script }}
+        run: |
+          echo "Run, Build Application using script"
+          $BUILD_SCRIPT
+
+      - name: Perform CodeQL Analysis
+        if: ${{ github.event.inputs.codeql-analysis }}
+        uses: github/codeql-action/analyze@e4262713b504983e61c7728f5452be240d9385a7 # v2.21.5 https://github.com/github/codeql-action/commit/e4262713b504983e61c7728f5452be240d9385a7
+        with:
+          category: /language:${{ github.event.inputs.codeql-language }}
