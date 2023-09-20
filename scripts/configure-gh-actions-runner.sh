@@ -14,8 +14,6 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
-set -e
-
 RUNNER_OS="linux"
 RUNNER_VERSION="2.294.0"
 RUNNER_HASH_256="11041376754f6beaccb56101a3e79bf5fc5d6ff628460fa1ae419f9f439e24a2"
@@ -25,7 +23,7 @@ RUNNER_HASH_256="11041376754f6beaccb56101a3e79bf5fc5d6ff628460fa1ae419f9f439e24a
 ##
 
 # Create a folder
-mkdir actions-runner && cd actions-runner
+mkdir actions-runner && cd actions-runner || exit
 
 # Download the latest runner package
 curl \

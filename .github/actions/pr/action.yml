@@ -2,15 +2,19 @@ name: Pull Request Workflow
 description: Pull request workflows
 
 inputs:
-  codeql-analysis:
-    description: Perform CodeQL analysis
-    default: "false"
-  codeql-build-script:
-    description: Build script
-  codeql-language:
-    description: Language to analyze
-  codeql-queries:
-    description: Queries to run (e.g. security-extended,security-and-quality)
+  # disallowed-packages:
+  #   description: Packages to disallow
+  # ghsa:
+  #   description: Allow GHSA advisories
+  # licenses:
+  #   default: Apache-2.0,BSD-2-Clause,BSD-3-Clause,CC0-1.0,GPL-2.0,GPL-3.0,ISC,MIT
+  #   description: Licenses to allow
+  severity:
+    default: low
+    description: Severity to fail on
+  timeout:
+    default: "120"
+    description: Timeout for each step
 
 runs:
   using: composite
@@ -22,30 +26,11 @@ runs:
     # Dependency Review
     - name: Dependency Review
       uses: actions/dependency-review-action@v3
-
-    # CodeQL Analysis
-    - name: Initialize CodeQL
-      if: ${{ github.event.inputs.codeql-analysis }}
-      uses: github/codeql-action/init@e4262713b504983e61c7728f5452be240d9385a7 # v2.21.5 https://github.com/github/codeql-action/commit/e4262713b504983e61c7728f5452be240d9385a7
+      # TODO: options (fail, license, packages)
       with:
-        languages: ${{ github.event.inputs.codeql-language }}
-        queries: ${{ github.event.inputs.codeql-queries }}
-
-    - name: Autobuild
-      if: ${{ github.event.inputs.codeql-analysis && ! github.event.inputs.codeql-build-script }}
-      uses: github/codeql-action/autobuild@e4262713b504983e61c7728f5452be240d9385a7 # v2.21.5 https://github.com/github/codeql-action/commit/e4262713b504983e61c7728f5452be240d9385a7
-
-    - name: Custom Build
-      if: ${{ github.event.inputs.codeql-analysis && github.event.inputs.codeql-build-script }}
-      shell: bash
-      env:
-        BUILD_SCRIPT: ${{ github.event.inputs.codeql-build-script }}
-      run: |
-        echo "Run, Build Application using script"
-        $BUILD_SCRIPT
-
-    - name: Perform CodeQL Analysis
-      if: ${{ github.event.inputs.codeql-analysis }}
-      uses: github/codeql-action/analyze@e4262713b504983e61c7728f5452be240d9385a7 # v2.21.5 https://github.com/github/codeql-action/commit/e4262713b504983e61c7728f5452be240d9385a7
-      with:
-        category: /language:${{ github.event.inputs.codeql-language }}
+        # allow-ghsa: ${{ github.event.inputs.ghsa }}
+        # allow-licenses: ${{ github.event.inputs.licenses }}
+        # deny-packages: ${{ github.event.inputs.disallowed-packages }}
+        fail-on-severity: ${{ github.event.inputs.severity }}
+        retry-on-snapshot-warnings-timeout: ${{ github.event.inputs.timeout }}
+        retry-on-snapshot-warnings: true

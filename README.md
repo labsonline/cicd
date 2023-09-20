@@ -2,7 +2,19 @@
 
 ---
 
-[![Contiuos Integration](https://github.com/labsonline/cicd/actions/workflows/_cicd.yml/badge.svg)](https://github.com/labsonline/cicd/actions/workflows/_cicd.yml) [![Review](https://github.com/labsonline/cicd/actions/workflows/_prw.yml/badge.svg)](https://github.com/labsonline/cicd/actions/workflows/_prw.yml) [![Releases](https://github.com/labsonline/cicd/actions/workflows/_arw.yml/badge.svg)](https://github.com/labsonline/cicd/actions/workflows/_arw.yml) [![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/labsonline/cicd/badge)](https://securityscorecards.dev/viewer/?uri=github.com/labsonline/cicd)
+[![OpenSSF Scorecard][ossf-score-badge]][ossf-score-link]
+[![Contiuos Integration][ci-badge]][ci-link]
+[![Review][review-badge]][review-link]
+[![Releases][releases-badge]][releases-link]
+
+[ossf-score-badge]: https://api.securityscorecards.dev/projects/github.com/labsonline/cicd/badge
+[ossf-score-link]: https://securityscorecards.dev/viewer/?uri=github.com/labsonline/cicd
+[ci-badge]: https://github.com/labsonline/cicd/actions/workflows/_cicd.yml/badge.svg
+[ci-link]: https://github.com/labsonline/cicd/actions/workflows/_cicd.yml
+[review-badge]: https://github.com/labsonline/cicd/actions/workflows/_prw.yml/badge.svg
+[review-link]: https://github.com/labsonline/cicd/actions/workflows/_prw.yml
+[releases-badge]: https://github.com/labsonline/cicd/actions/workflows/_arw.yml/badge.svg
+[releases-link]: https://github.com/labsonline/cicd/actions/workflows/_arw.yml
 
 ---
 

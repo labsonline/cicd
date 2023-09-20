@@ -10,12 +10,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@3df4ab11eba7bda6032a0b82a6bb43b11571feac # v4.0.0 https://github.com/actions/checkout/commit/3df4ab11eba7bda6032a0b82a6bb43b11571feac
+        uses: actions/checkout@v4 # v4.0.0 https://github.com/actions/checkout/commit/3df4ab11eba7bda6032a0b82a6bb43b11571feac
         with:
           fetch-depth: 0
           persist-credentials: false
 
       - name: Trivy Scan
-        uses: labsonline/cicd/.github/actions/trivy@424f749d3881c969d360beadb70ed8614066be03 # v0.1.2 https://github.com/labsonline/cicd/commit/424f749d3881c969d360beadb70ed8614066be03
+        uses: labsonline/cicd/.github/actions/trivy@dev # v0.1.2 https://github.com/labsonline/cicd/commit/424f749d3881c969d360beadb70ed8614066be03
         with:
           upload-scan-result: ${{ github.ref == 'refs/heads/main' && github.event_name == 'push' }}

@@ -3,20 +3,20 @@ description: Linting Workflow
 
 inputs:
   default-branch:
-    description: Default branch to work on
     default: main
+    description: Default branch to work on
   helm-chart:
-    description: Helm chart path
     default: deployment/chart
+    description: Helm chart path
   helm-lint:
+    default: "false"
     description: Perform helm linting
-    default: "false"
   helm-version:
-    description: Helm version
     default: v3.12.3
+    description: Helm version
   validate-all:
-    description: Lint everything
     default: "false"
+    description: Lint everything
 
 runs:
   using: composite

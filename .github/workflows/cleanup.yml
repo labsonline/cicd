@@ -16,8 +16,8 @@ permissions:
   contents: read
 
 jobs:
-  # Cleanup stale issues and PRs
   stale:
+    name: Cleanup stale issues and PRs
     runs-on: ubuntu-latest
     if: ${{ github.event_name == 'schedule' }}
     permissions:
@@ -25,7 +25,7 @@ jobs:
       issues: write
       pull-requests: write
     steps:
-      - uses: actions/stale@1160a2240286f5da8ec72b1c0816ce2481aabf84 # v8.0.0 https://github.com/actions/stale/commit/1160a2240286f5da8ec72b1c0816ce2481aabf84
+      - uses: actions/stale@v8
         with:
           any-of-labels: needs-more-info,needs-demo
           days-before-close: 5
@@ -39,15 +39,14 @@ jobs:
           stale-pr-label: no-pr-activity
           stale-pr-message: Message to comment on stale PRs. If none provided, will not mark PRs stale
 
-  # Cleanup cache
   cache:
+    name: Cleanup cache
     runs-on: ubuntu-latest
     if: ${{ github.event.inputs.clean || github.event_name == 'schedule' }}
     permissions:
       contents: write
     steps:
-      - name: Cleanup cache
-        shell: bash
+      - shell: bash
         env:
           BRANCH: ${{ github.event.inputs.branch }}
           GITHUB_TOKEN: ${{ github.token }}
