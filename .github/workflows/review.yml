@@ -15,7 +15,7 @@ jobs:
           fetch-depth: 0
           persist-credentials: false
 
-      - uses: labsonline/cicd/.github/actions/lint@130e841e56a92a05e00e12fa55c5949de215f9b4 # v0.1.3 https://github.com/labsonline/cicd/commit/130e841e56a92a05e00e12fa55c5949de215f9b4
+      - uses: labsonline/cicd/.github/actions/lint@6e038f38f0819ffec0ea23e23efd8a1a0a4a4537 # v0.1.4 https://github.com/labsonline/cicd/commit/6e038f38f0819ffec0ea23e23efd8a1a0a4a4537
 
   review:
     runs-on: ubuntu-latest
@@ -25,7 +25,7 @@ jobs:
           fetch-depth: 0
           persist-credentials: false
 
-      - uses: labsonline/cicd/.github/actions/pr@130e841e56a92a05e00e12fa55c5949de215f9b4 # v0.1.3 https://github.com/labsonline/cicd/commit/130e841e56a92a05e00e12fa55c5949de215f9b4
+      - uses: labsonline/cicd/.github/actions/pr@6e038f38f0819ffec0ea23e23efd8a1a0a4a4537 # v0.1.4 https://github.com/labsonline/cicd/commit/6e038f38f0819ffec0ea23e23efd8a1a0a4a4537
 
   assign:
     runs-on: ubuntu-latest

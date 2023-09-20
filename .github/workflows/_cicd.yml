@@ -11,20 +11,20 @@ permissions: read-all
 
 jobs:
   bot:
-    uses: labsonline/cicd/.github/workflows/bot.yml@130e841e56a92a05e00e12fa55c5949de215f9b4 # v0.1.3 https://github.com/labsonline/cicd/commit/130e841e56a92a05e00e12fa55c5949de215f9b4
+    uses: labsonline/cicd/.github/workflows/bot.yml@6e038f38f0819ffec0ea23e23efd8a1a0a4a4537 # v0.1.4 https://github.com/labsonline/cicd/commit/6e038f38f0819ffec0ea23e23efd8a1a0a4a4537
     permissions:
       issues: write
       pull-requests: write
       repository-projects: write
   # Uncomment if you want to use the codeql workflow
   # ast:
-  #   uses: labsonline/cicd/.github/workflows/ast.yml@130e841e56a92a05e00e12fa55c5949de215f9b4 # v0.1.3 https://github.com/labsonline/cicd/commit/130e841e56a92a05e00e12fa55c5949de215f9b4
+  #   uses: labsonline/cicd/.github/workflows/ast.yml@6e038f38f0819ffec0ea23e23efd8a1a0a4a4537 # v0.1.4 https://github.com/labsonline/cicd/commit/6e038f38f0819ffec0ea23e23efd8a1a0a4a4537
   #   with:
   #     codeql-language: ""
   gate:
-    uses: labsonline/cicd/.github/workflows/gate.yml@130e841e56a92a05e00e12fa55c5949de215f9b4 # v0.1.3 https://github.com/labsonline/cicd/commit/130e841e56a92a05e00e12fa55c5949de215f9b4
+    uses: labsonline/cicd/.github/workflows/gate.yml@6e038f38f0819ffec0ea23e23efd8a1a0a4a4537 # v0.1.4 https://github.com/labsonline/cicd/commit/6e038f38f0819ffec0ea23e23efd8a1a0a4a4537
   scorecard:
-    uses: labsonline/cicd/.github/workflows/scorecard.yml@130e841e56a92a05e00e12fa55c5949de215f9b4 # v0.1.3 https://github.com/labsonline/cicd/commit/130e841e56a92a05e00e12fa55c5949de215f9b4
+    uses: labsonline/cicd/.github/workflows/scorecard.yml@6e038f38f0819ffec0ea23e23efd8a1a0a4a4537 # v0.1.4 https://github.com/labsonline/cicd/commit/6e038f38f0819ffec0ea23e23efd8a1a0a4a4537
     permissions:
       id-token: write
       security-events: write
