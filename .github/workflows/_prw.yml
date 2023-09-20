@@ -12,6 +12,6 @@ permissions: read-all
 
 jobs:
   review:
-    uses: labsonline/cicd/.github/workflows/review.yml@dev # v0.1.2 https://github.com/labsonline/cicd/commit/424f749d3881c969d360beadb70ed8614066be03
+    uses: labsonline/cicd/.github/workflows/review.yml@main # v0.1.2 https://github.com/labsonline/cicd/commit/424f749d3881c969d360beadb70ed8614066be03
     permissions:
       pull-requests: write
