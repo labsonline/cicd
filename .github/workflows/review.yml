@@ -10,29 +10,43 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1  https://github.com/actions/checkout/commit/b4ffde65f46336ab88eb53be808477a3936bae11
         with:
           fetch-depth: 0
           persist-credentials: false
-
       - uses: labsonline/cicd/.github/actions/lint@6e038f38f0819ffec0ea23e23efd8a1a0a4a4537 # v0.1.4 https://github.com/labsonline/cicd/commit/6e038f38f0819ffec0ea23e23efd8a1a0a4a4537
+
+  scanning:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1  https://github.com/actions/checkout/commit/b4ffde65f46336ab88eb53be808477a3936bae11
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: GitGuardian/ggshield-action@4848e499be8c740d2d71526182c1343d577d7322 # v1.20.0 https://github.com/GitGuardian/ggshield-action/commit/4848e499be8c740d2d71526182c1343d577d7322
+        env:
+          GITHUB_PUSH_BEFORE_SHA: ${{ github.event.before }}
+          GITHUB_PUSH_BASE_SHA: ${{ github.event.base }}
+          GITHUB_PULL_BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          GITHUB_DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
+          GITGUARDIAN_API_KEY: ${{ secrets.GITGUARDIAN_API_KEY }}
 
   review:
     runs-on: ubuntu-latest
+    needs: scanning
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1  https://github.com/actions/checkout/commit/b4ffde65f46336ab88eb53be808477a3936bae11
         with:
           fetch-depth: 0
           persist-credentials: false
-
       - uses: labsonline/cicd/.github/actions/pr@6e038f38f0819ffec0ea23e23efd8a1a0a4a4537 # v0.1.4 https://github.com/labsonline/cicd/commit/6e038f38f0819ffec0ea23e23efd8a1a0a4a4537
 
   assign:
     runs-on: ubuntu-latest
+    needs: review
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1  https://github.com/actions/checkout/commit/b4ffde65f46336ab88eb53be808477a3936bae11
         with:
           fetch-depth: 0
           persist-credentials: false
-
       - uses: kentaro-m/auto-assign-action@3e986bf9c274729de0d85191da42484917883328 # v1.2.5 https://github.com/kentaro-m/auto-assign-action/commit/3e986bf9c274729de0d85191da42484917883328
