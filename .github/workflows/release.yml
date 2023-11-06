@@ -19,7 +19,7 @@ jobs:
     permissions:
       contents: write
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1  https://github.com/actions/checkout/commit/b4ffde65f46336ab88eb53be808477a3936bae11
         with:
           fetch-depth: 0
           persist-credentials: false
@@ -41,7 +41,7 @@ jobs:
     permissions:
       contents: write
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1  https://github.com/actions/checkout/commit/b4ffde65f46336ab88eb53be808477a3936bae11
         with:
           fetch-depth: 0
           persist-credentials: false
