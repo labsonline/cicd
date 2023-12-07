@@ -25,7 +25,7 @@ jobs:
       issues: write
       pull-requests: write
     steps:
-      - uses: actions/stale@v8
+      - uses: actions/stale@v9
         with:
           any-of-labels: needs-more-info,needs-demo
           days-before-close: 5
