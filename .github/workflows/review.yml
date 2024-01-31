@@ -49,4 +49,4 @@ jobs:
         with:
           fetch-depth: 0
           persist-credentials: false
-      - uses: kentaro-m/auto-assign-action@3e986bf9c274729de0d85191da42484917883328 # v1.2.5 https://github.com/kentaro-m/auto-assign-action/commit/3e986bf9c274729de0d85191da42484917883328
+      - uses: kentaro-m/auto-assign-action@f4648c0a9fdb753479e9e75fc251f507ce17bb7e # v1.2.5 https://github.com/kentaro-m/auto-assign-action/commit/3e986bf9c274729de0d85191da42484917883328
